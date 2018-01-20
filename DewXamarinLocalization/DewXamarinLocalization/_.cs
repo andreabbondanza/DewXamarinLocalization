@@ -26,27 +26,29 @@ namespace DewCore.Xamarin.Localization
         /// </summary>
         public _()
         {
-            var culture = CultureInfo.CurrentCulture.Name.ToLower();
             if (_localizer.GetInternalDictionary() == null)
             {
-                var assembly = Application.Current.GetType().Assembly;
-                var mainNs = assembly.GetName().Name;
-                var json = string.Empty;
-                using (Stream s = assembly.GetManifestResourceStream($"{mainNs}.Localized.{culture}.json"))
-                {
-                    using (StreamReader sr = new StreamReader(s))
-                    {
-                        LoadDictionary(sr).Wait();
-                    }
-                }
-
+                LoadDictionary().Wait();
             }
         }
-
-        private async Task LoadDictionary(StreamReader sr)
+        /// <summary>
+        /// Load dictionary from current culture
+        /// </summary>
+        /// <returns></returns>
+        public static async Task LoadDictionary()
         {
-            var json = await sr.ReadToEndAsync();
-            _localizer.LoadDictionary(Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(json));
+            var culture = CultureInfo.CurrentCulture.Name.ToLower();
+            var assembly = Application.Current.GetType().Assembly;
+            var mainNs = assembly.GetName().Name;
+            var json = string.Empty;
+            using (Stream s = assembly.GetManifestResourceStream($"{mainNs}.Localized.{culture}.json"))
+            {
+                using (StreamReader sr = new StreamReader(s))
+                {
+                    json = await sr.ReadToEndAsync();
+                    _localizer.LoadDictionary(Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(json));
+                }
+            }
         }
         /// <summary>
         /// Change the culture
@@ -76,6 +78,14 @@ namespace DewCore.Xamarin.Localization
         {
             return (this as IMarkupExtension<string>).ProvideValue(serviceProvider);
         }
-
+        /// <summary>
+        /// Return a string from dictionary in code
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string GetString(string value)
+        {
+            return _localizer.GetString(value);
+        }
     }
 }
