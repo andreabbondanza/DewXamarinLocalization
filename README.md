@@ -31,7 +31,7 @@ The file __MUST__ be placed in a folder called __Localized__ in the shared proje
 #### Embedded
 When you create the file, you __MUST__ set in the properties _"Embedded resource"_ like _Build Action_
 ## NOTE
-If a file for a culture isn't present you'll get an exception when the app is opening.
+If a file for a culture isn't present you'll get an exception when the app is opening __only__ with that culture.
 # IMPORTANT! --------------------------
 ## XAML Code
 
