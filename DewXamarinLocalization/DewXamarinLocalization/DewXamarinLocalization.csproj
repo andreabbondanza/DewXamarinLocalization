@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Andrea Vincenzo Abbondanza</Authors>
+    <Company>Dew Studio</Company>
+    <Product>Dew Xamarin Localization</Product>
+    <Description>A localization object to use with xamarin forms on shared project</Description>
+    <PackageIconUrl>http://andrewdev.eu/wp-content/uploads/2016/08/OnlyLogo.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/andreabbondanza/DewXamarinLocalization</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/andreabbondanza/DewXamarinLocalization</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/andreabbondanza/DewXamarinLocalization/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>.net standard, xamarin, forms, dew, string, localization</PackageTags>
+    <PackageReleaseNotes>First</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\DewXamarinLocalization.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DewStrings" Version="2.2.1" />
+    <PackageReference Include="DewTypes" Version="1.4.1" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+  </ItemGroup>
+
+</Project>
