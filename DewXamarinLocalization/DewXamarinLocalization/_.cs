@@ -39,8 +39,14 @@ namespace DewCore.Xamarin.Localization
         {
             var culture = CultureInfo.CurrentCulture.Name.ToLower();
             var assembly = Application.Current.GetType().Assembly;
-            var mainNs = assembly.GetName().Name;
+            var mainNs = string.Empty;
             var json = string.Empty;
+            foreach (var res in assembly.GetManifestResourceNames())
+            {
+                var temp = res.Split('.');
+                mainNs = temp[0] + "." + temp[1];
+                break;
+            }
             using (Stream s = assembly.GetManifestResourceStream($"{mainNs}.Localized.{culture}.json"))
             {
                 using (StreamReader sr = new StreamReader(s))
