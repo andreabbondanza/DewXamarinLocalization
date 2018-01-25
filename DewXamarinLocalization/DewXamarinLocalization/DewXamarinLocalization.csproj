@@ -13,8 +13,8 @@
     <PackageLicenseUrl>https://github.com/andreabbondanza/DewXamarinLocalization/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>.net standard, xamarin, forms, dew, string, localization</PackageTags>
-    <PackageReleaseNotes>Return in code</PackageReleaseNotes>
-    <Version>1.1.0</Version>
+    <PackageReleaseNotes>Fixed namespace bug</PackageReleaseNotes>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

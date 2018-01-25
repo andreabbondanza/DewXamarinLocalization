@@ -23,6 +23,16 @@ The files are simple json dictionary, like this:
 ```
 # IMPORTANT! --------------------------
 These steps are important!
+#### Tree example
+```text
+-Shared project
+ |
+ |-Localized
+     |- it-it.json
+     |- en-us.json
+ |- Views
+ |- etc.
+```
 #### Naming
 This is really important, you must be carefull about the file names.
 Every filename __MUST__ correspond to the __CultureInfo__ Name property in lower case (en-us,it-it,it-ch,en-gb,fr-fr,etc.) and must be __json__. Obviously if your app support 3 languages, you should have 3 different culture and you must support all of them.
