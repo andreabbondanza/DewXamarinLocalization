@@ -1,11 +1,11 @@
 # DewXamarinLocalization
-A .NET standard helper for xamarin localization in shared projects
+A .NET standard helper for xamarin forms localization in shared projects
 
-# Why?
-Xamarin is a good choice for many reasons... but the support sometimes is a bit... how can I say...? "Shitty"
 
-After leaving the PCL for .net standard (great!) the shared project still has problem about localization.
-So, tired of this stuff, I've decided to make a localizer for xamarin.forms by myself.
+
+
+
+
 
 # How to use
 My first though was about that this localization system must be easy, and (maybe it can be still better, who knows?) I think I've done it!
