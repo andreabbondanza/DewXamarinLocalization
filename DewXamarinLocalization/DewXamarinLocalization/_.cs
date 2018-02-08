@@ -34,7 +34,7 @@ namespace DewCore.Xamarin.Localization
         /// <summary>
         /// Load dictionary from current culture
         /// </summary>
-        /// <param name="newCulture">The culture to load, if empty is the current culture</param>
+        /// <param name="newCulture">The culture to load, if empty is the current culture </param>
         /// <returns></returns>
         public static async Task LoadDictionary(CultureInfo newCulture = null)
         {
