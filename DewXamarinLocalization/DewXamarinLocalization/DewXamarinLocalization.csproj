@@ -13,8 +13,8 @@
     <PackageLicenseUrl>https://github.com/andreabbondanza/DewXamarinLocalization/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>.net standard, xamarin, forms, dew, string, localization</PackageTags>
-    <PackageReleaseNotes>Fixed namespace bug</PackageReleaseNotes>
-    <Version>1.1.1</Version>
+    <PackageReleaseNotes>Fixed change culture doesn't load new dictionary</PackageReleaseNotes>
+    <Version>1.1.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="DewStrings" Version="2.2.1" />
-    <PackageReference Include="DewTypes" Version="1.4.1" />
+    <PackageReference Include="DewTypes" Version="1.5.0" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
 

@@ -34,10 +34,11 @@ namespace DewCore.Xamarin.Localization
         /// <summary>
         /// Load dictionary from current culture
         /// </summary>
+        /// <param name="newCulture">The culture to load</param>
         /// <returns></returns>
-        public static async Task LoadDictionary()
+        public static async Task LoadDictionary(CultureInfo newCulture = null)
         {
-            var culture = CultureInfo.CurrentCulture.Name.ToLower();
+            var culture = newCulture == null ? CultureInfo.CurrentCulture.Name.ToLower() : newCulture.Name.ToLower();
             var assembly = Application.Current.GetType().Assembly;
             var mainNs = string.Empty;
             var json = string.Empty;
@@ -63,8 +64,8 @@ namespace DewCore.Xamarin.Localization
         /// <returns></returns>
         public static async Task ChangeCulture(CultureInfo culture)
         {
-            _localizer.GetInternalDictionary().Clear();
-            await _localizer.LoadDictionaryFromFiles("Localized" + Path.DirectorySeparatorChar + culture.Name + ".json");
+            _localizer.ResetDictionary();
+            await LoadDictionary(culture);
         }
         /// <summary>
         /// Value provider

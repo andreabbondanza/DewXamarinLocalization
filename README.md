@@ -141,6 +141,21 @@ or
 ```
 
 If the it-it.json file contains a voice for "My App's name", it will be translated, otherwise the app will print "My App's name" (that is the key).
+## Change dictionary in runtime
+
+If you want change the dictionary in runtime, you shouuld just do:
+```csharp
+public async Task Test()
+{
+    var newCulture = new System.Globalization.CultureInfo("it-IT");
+    await \_.ChangeCulture(newCulture);
+    System.Diagnostics.Debug.Write(_.GetString("AppTitle"));
+    newCulture = new System.Globalization.CultureInfo("en-US");
+    await \_.ChangeCulture(newCulture);
+    System.Diagnostics.Debug.Write(_.GetString("AppTitle"));
+}
+```
+
 
 ## Note 
 ## NuGet
