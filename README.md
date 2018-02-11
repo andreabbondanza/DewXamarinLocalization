@@ -156,6 +156,35 @@ public async Task Test()
 }
 ```
 
+### Scenario where you want change your language at app's start
+
+If you want to change the language in app start, your first approach is to place the _ChangeCulture_ call into __OnStart__ event but it won't work.
+This because the _ChangeCulture_ method is __asyncronous__, and the App will initialize via Xaml and this will create a conflict (with crashes sometimes).
+
+Another approach is to change the culture in the __OnAppaering__ event of the main page, and it works, but only for the next pages, because the mainpage will be loaded with the currentculture language.
+
+If you try to call ChangeCulture method into App constructor you'll get a NullReferenceException because DewXamarinLocalization class depends from Application class.
+
+A solution for this particular problem is done with the static property __CultureStringOverride__.
+
+This property is mono-use (after set it, you should call _LoadDictionary_ method, that will read it and will delete it) didn't has dependencies, so you can call into __App__ constructor without problem.
+
+Like I've said, you __SHOULD__ call _LoadDictionary_ after set this property, but, in this particular case, will be XAML the creator of the DewXamarinLocalization class. 
+
+__NOTE:__ If you set property and after call LoadDictionary you'll get the same result of a call of _ChangeCulture_, so you should use this property only for this scenario.
+
+#### Example:
+
+```csharp
+public App ()
+{
+    InitializeComponent();
+    var cul = LoadMyCultureFromSettings(); // this must be the culture name, like "it-it","en-us", etc. in lower case, see Naming paragraph for more.
+    DewCore.Xamarin.Localization._.CultureStringOverride = cul;
+    MainPage = new MainPage();
+}
+
+```
 
 ## Note 
 ## NuGet
