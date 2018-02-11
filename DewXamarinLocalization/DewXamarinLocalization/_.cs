@@ -17,6 +17,10 @@ namespace DewCore.Xamarin.Localization
     public class _ : IMarkupExtension<string>
     {
         /// <summary>
+        /// Use only if you need to make a changeculture into App.cs constructor, use ChangeCulture in other contexts
+        /// </summary>
+        public static string CultureStringOverride = null;
+        /// <summary>
         /// MarkupExtension temp property
         /// </summary>
         public string S { get; set; }
@@ -39,6 +43,9 @@ namespace DewCore.Xamarin.Localization
         public static async Task LoadDictionary(CultureInfo newCulture = null)
         {
             var culture = newCulture == null ? CultureInfo.CurrentCulture.Name.ToLower() : newCulture.Name.ToLower();
+            if (CultureStringOverride != null)
+                culture = CultureStringOverride;
+            CultureStringOverride = null;
             var assembly = Application.Current.GetType().Assembly;
             var mainNs = string.Empty;
             var json = string.Empty;

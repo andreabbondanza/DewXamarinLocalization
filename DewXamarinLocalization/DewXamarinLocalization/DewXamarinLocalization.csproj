@@ -13,8 +13,10 @@
     <PackageLicenseUrl>https://github.com/andreabbondanza/DewXamarinLocalization/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>.net standard, xamarin, forms, dew, string, localization</PackageTags>
-    <PackageReleaseNotes>Fixed change culture doesn't load new dictionary</PackageReleaseNotes>
-    <Version>1.1.2</Version>
+    <PackageReleaseNotes>Added string override for in App constructor use</PackageReleaseNotes>
+    <Version>1.2.0</Version>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
