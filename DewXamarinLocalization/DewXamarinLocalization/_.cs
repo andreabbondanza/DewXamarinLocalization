@@ -24,6 +24,10 @@ namespace DewCore.Xamarin.Localization
         /// MarkupExtension temp property
         /// </summary>
         public string S { get; set; }
+        /// <summary>
+        /// Default culture. Set this to load the DefaultCulture resource when the requested isn't present
+        /// </summary>
+        public static string DefaultCulture = string.Empty;
         private static IDewLocalizer _localizer = new DewLocalizer();
         /// <summary>
         /// Constructor
@@ -38,7 +42,7 @@ namespace DewCore.Xamarin.Localization
         /// <summary>
         /// Load dictionary from current culture
         /// </summary>
-        /// <param name="newCulture">The culture to load, if empty is the current culture </param>
+        /// <param name="newCulture">The culture to load, if empty is the current culture</param>
         /// <returns></returns>
         public static async Task LoadDictionary(CultureInfo newCulture = null)
         {
@@ -55,13 +59,25 @@ namespace DewCore.Xamarin.Localization
                 mainNs = temp[0] + "." + temp[1];
                 break;
             }
-            using (Stream s = assembly.GetManifestResourceStream($"{mainNs}.Localized.{culture}.json"))
+            Stream s = null;
+            try
             {
+
+                s = assembly.GetManifestResourceStream($"{mainNs}.Localized.{culture}.json");
+                if (s == null)
+                {
+                    string defCulture = DefaultCulture == string.Empty ? CultureInfo.CurrentCulture.Name.ToLower() : DefaultCulture.ToLower();
+                    s = assembly.GetManifestResourceStream($"{mainNs}.Localized.{defCulture}.json");
+                }
                 using (StreamReader sr = new StreamReader(s))
                 {
                     json = await sr.ReadToEndAsync();
                     _localizer.LoadDictionary(Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(json));
                 }
+            }
+            finally
+            {
+                s?.Dispose();
             }
         }
         /// <summary>

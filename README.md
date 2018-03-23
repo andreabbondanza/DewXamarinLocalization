@@ -35,7 +35,7 @@ These steps are important!
 ```
 #### Naming
 This is really important, you must be carefull about the file names.
-Every filename __MUST__ correspond to the __CultureInfo__ Name property in lower case (en-us,it-it,it-ch,en-gb,fr-fr,etc.) and must be __json__. Obviously if your app support 3 languages, you should have 3 different culture and you must support all of them.
+Every filename __MUST__ correspond to the __CultureInfo__ [Name property](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.name?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(System.Globalization.CultureInfo.Name);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.7.1) in lower case (en-us,it-it,it-ch,en-gb,fr-fr,etc.) and must be __json__. Obviously if your app support 3 languages, you should have 3 different culture and you must support all of them.
 #### Path
 The file __MUST__ be placed in a folder called __Localized__ in the shared project. 
 #### Embedded
@@ -148,10 +148,10 @@ If you want change the dictionary in runtime, you shouuld just do:
 public async Task Test()
 {
     var newCulture = new System.Globalization.CultureInfo("it-IT");
-    await \_.ChangeCulture(newCulture);
+    await _.ChangeCulture(newCulture);
     System.Diagnostics.Debug.Write(_.GetString("AppTitle"));
     newCulture = new System.Globalization.CultureInfo("en-US");
-    await \_.ChangeCulture(newCulture);
+    await _.ChangeCulture(newCulture);
     System.Diagnostics.Debug.Write(_.GetString("AppTitle"));
 }
 ```
@@ -186,7 +186,21 @@ public App ()
 
 ```
 
+## Default culture
+
+There is now a __DefaultCulture__ property.
+
+You can add a default culture to prevent crashes when a culture resource doesn't extist.
+
+For example if you set as __Default Culture__ "en-us" and you try to load the culture "it-it", if the resource doesn't exists the system will try to load the "en-us" culture resource. 
+
+If also the en-us culture resource doesn't exists, the system will try to load the current culture's resource but, if also this will be missed, the system will launch an exception.
+
+You should set the __DefaultCulture__ property into the app constructor.
+
+
 ## Note 
+Added __DefaultCulture__ property (Must correspond to [Name Property](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.name?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(System.Globalization.CultureInfo.Name);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.7.1) in lower case)
 ## NuGet
 You can find it on nuget with the name [DewXamarinLocalization](https://www.nuget.org/packages/DewXamarinLocalization/)
 
