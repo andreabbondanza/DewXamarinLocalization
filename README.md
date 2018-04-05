@@ -33,6 +33,8 @@ These steps are important!
  |- Views
  |- etc.
 ```
+
+__Every file content must be at least "{}".__
 #### Naming
 This is really important, you must be carefull about the file names.
 Every filename __MUST__ correspond to the __CultureInfo__ [Name property](https://docs.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.name?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(System.Globalization.CultureInfo.Name);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.7.1) in lower case (en-us,it-it,it-ch,en-gb,fr-fr,etc.) and must be __json__. Obviously if your app support 3 languages, you should have 3 different culture and you must support all of them.
